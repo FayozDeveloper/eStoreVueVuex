@@ -1,10 +1,10 @@
 <template>
-$END$
+  <router-view></router-view>
 </template>
 
 <script>
 export default {
-name: "text"
+  name: `Test`
 }
 </script>
 

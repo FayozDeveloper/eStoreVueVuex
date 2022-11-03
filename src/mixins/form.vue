@@ -1,10 +1,14 @@
 <template>
-$END$
+    <div>
+        <div class="container">
+
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-name: "form"
+  name: "form"
 }
 </script>
 
