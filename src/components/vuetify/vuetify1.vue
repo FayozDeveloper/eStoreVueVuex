@@ -45,6 +45,17 @@
               <div class="infoProduct">
                 <h3>{{product.title.substring(0,15)}}...</h3>
                 <h2>Price: {{product.price}}$</h2>
+
+                <div>
+                  <v-rating
+                      background-color="grey"
+                      color="warning"
+                      length="5"
+                      size="18"
+                      :value="product.rating.rate"
+                  ></v-rating>
+                </div>
+
                 <router-link :to="`/products/${product.id}`">
                   <button type="submit">Add Product</button>
                 </router-link>

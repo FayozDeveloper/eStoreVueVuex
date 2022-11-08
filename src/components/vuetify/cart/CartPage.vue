@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="addedProducts">
-      <div v-for="product in addedProducts" :key="product.id">
-          {{product.title}}
+    <div v-if="cart && cart.length">
+      <div v-for="product in cart" :key="product.id" class="mb-4">
+          <h3>{{cart.title}}</h3>
       </div>
     </div>
     <div v-else>Cart is Empty</div>
@@ -14,11 +14,21 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "CartPage",
+  data(){
+    return{
+
+    }
+  },
   computed:{
-    ...mapGetters(['addedProducts'])
+    ...mapGetters(['addProductToCart','addedProducts']),
+    cart(){
+      return this.addedProducts;
+    }
   },
   created() {
     console.log(this.addedProducts)
+    // this.addProductToCart
+    console.log(this.addProductToCart)
   }
 }
 </script>

@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import getObjectFromLocalStorage from '../mixins/localStorage/getObjectFromLocalS'
-import addObjectToLocalStorage from '../mixins/localStorage/addObjectToLocalS'
+import getObjectFromLocalStorage from '../../mixins/localStorage/getObjectFromLocalS'
+import addObjectToLocalStorage from '../../mixins/localStorage/addObjectToLocalS'
 export default {
   name: "LocaleStorageExample",
   data(){

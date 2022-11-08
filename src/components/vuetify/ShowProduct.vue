@@ -39,13 +39,26 @@
             </v-card-text>
 
             <h3>PRICE: {{product.price}}$</h3>
+            <div v-if="product.rating && product.rating.length" >
+                  <h4 style="margin-top: 10px">COUNT: {{product.rating.count}}</h4>
+            </div>
+            <div v-if="product.rating.rate && product.rating.rate.length">
+                  <h2 style="margin-top: 10px ; color: darkgoldenrod">RATE: {{product.rating.rate}}</h2>
+            </div>
+
+            <v-rating
+                background-color="grey"
+                color="warning"
+                hover
+                length="5"
+                size="33"
+                :value="product.rating.rate"
+            ></v-rating>
+
             <v-divider class="mx-4"></v-divider>
             <v-card-actions class="btn_actions">
-              <v-btn
-                  color="deep-purple lighten-2"
-                  @click="addProductToCart(product)"
-              >
-                Buy now
+              <v-btn color="deep-purple lighten-2" @click="addToCart()">
+                 Buy now
               </v-btn>
               <v-btn color="deep-purple lighten-2">
                   <router-link style="color: black" to="/cart">Cart</router-link>
@@ -71,19 +84,25 @@ export default {
   methods:{
     // ...mapActions(['addProductToCart']),
     async fetchProductById() {
-      const response = await axios.get(`https://fakestoreapi.com/products/${this.profile}`)
+      this.product = await axios.get(`https://fakestoreapi.com/products/${this.profile}`)
       .then(res => res.data).catch((err) => console.log(err))
-       this.product = response
     },
-    addProductToCart(product) {
-      this.$store.dispatch('addProductsToCart', {
-        product: product,
+    // addProductToCart: async function(product) {
+    //   await this.$store.dispatch('addProductsToCart', {
+    //     product: product,
+    //     quantity: 1
+    //   })
+    // },
+
+    addToCart(){
+      this.$store.dispatch('addProductToCart', {
+        product: this.product,
         quantity: 1
-      })
+      } )
     }
   },
   computed:{
-    ...mapGetters(['addedProducts'])
+    ...mapGetters(['addedProducts', 'addProductToCart'])
   },
   mounted(){
     this.profile = this.$route.params.id;
@@ -92,6 +111,9 @@ export default {
     console.log(this.addedProducts)
     // this.addProductToCart(this.product)
   },
+  created() {
+    // this.addToCart()
+  }
 }
 </script>
 
